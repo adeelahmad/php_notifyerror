@@ -86,11 +86,12 @@ static void notifyerror_error_cb(int type, const char *error_filename, const uin
 		if(currentLogLevel >= log_level ) {
 			
 			char * subject;
-			char * hostname[128];
-			gethostname(&hostname, sizeof hostname);
+			char hostname[1024];
+			hostname[1023] = '\0';
+			gethostname(hostname, 1023);
 			php_sprintf(subject,"%s [%s]",hostname,header);
-			//php_mail(email,subject,error_message,NULL,NULL);
-			printf("\n\n Error => %s \n\n%s\n\n",subject,error_message);
+			php_mail(email,subject,error_message,NULL,NULL);
+			//printf("\n\n Error => %s \n\n%s\n\n",subject,error_message);
 		}
 		
 		efree(error_message);
