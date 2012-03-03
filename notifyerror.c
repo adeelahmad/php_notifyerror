@@ -87,9 +87,10 @@ static void notifyerror_error_cb(int type, const char *error_filename, const uin
 			
 			char * subject;
 			char * hostname[128];
-			gethostname(hostname, sizeof hostname);
+			gethostname(&hostname, sizeof hostname);
 			php_sprintf(subject,"%s [%s]",hostname,header);
-			php_mail(email,subject,error_message,NULL,NULL);
+			//php_mail(email,subject,error_message,NULL,NULL);
+			printf("%s",error_message);
 		}
 		
 		efree(error_message);
