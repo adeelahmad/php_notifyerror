@@ -4,7 +4,7 @@
 extern zend_module_entry notifyerror_module_entry;
 #define phpext_notifyerror_ptr &notifyerror_module_entry
 
-#define NOTIFYERROR_VERSION "0.1"
+#define NOTIFYERROR_VERSION "0.0.1"
 
 static char * notifyerror_mk_filename(char * identifier, char * template);
 

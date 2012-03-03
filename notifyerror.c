@@ -82,19 +82,6 @@ static void notifyerror_error_cb(int type, const char *error_filename, const uin
 	
 	if(enabled && email != "") {
 
-/*
-		char template[100] ;
-		sprintf(template,"/tmp/php-errornotify-%d",rand());
-	
-		FILE *F;
-    	F = VCWD_FOPEN(template, "wb");
-	
-		if (F) {
-			fprintf(F,"%s\n%s",header,error_message);
-			fclose(F);
-		}
-*/	
-	
 		
 		if(currentLogLevel >= log_level ) {
 			
@@ -105,10 +92,6 @@ static void notifyerror_error_cb(int type, const char *error_filename, const uin
 			php_mail(email,subject,error_message,NULL,NULL);
 		}
 		
-		//char cmd[200];
-		//sprintf(cmd,"/bin/cat %s | /bin/mail -s '%s' %s",template,header,email);
-		//system(cmd);
-		//VCWD_UNLINK(template);
 		efree(error_message);
 		
 	}
@@ -128,7 +111,7 @@ PHP_INI_END()
 PHP_MINIT_FUNCTION(notifyerror)
 {
 	//notify_init("php " PHP_VERSION);
-	REGISTER_INI_ENTRIES();
+	//REGISTER_INI_ENTRIES();
 	return SUCCESS;
 }
 /* }}} */
@@ -148,7 +131,7 @@ PHP_MSHUTDOWN_FUNCTION(notifyerror)
 PHP_MINFO_FUNCTION(notifyerror)
 {
 	php_info_print_table_start();
-	php_info_print_table_row(2, "Author", "Adeel Ahmad(adeelahmad99 at g mail DOT com)");
+	php_info_print_table_row(2, "Author", "Adeel Ahmad(adeelahmad99[at]gmail.com)");
 	php_info_print_table_row(2, "Version",  NOTIFYERROR_VERSION);
 	DISPLAY_INI_ENTRIES();
 	php_info_print_table_end();
@@ -158,6 +141,7 @@ PHP_MINFO_FUNCTION(notifyerror)
 /* {{{ PHP_RINIT_FUNCTION */
 PHP_RINIT_FUNCTION(notifyerror)
 {
+	REGISTER_INI_ENTRIES();
 	orig_error_cb = zend_error_cb;
 	zend_error_cb = notifyerror_error_cb;
     return SUCCESS;
