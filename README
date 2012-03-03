@@ -1,0 +1,31 @@
+notifyerror is a php extension written in c, to help system administrators and developers track errors on production servers.
+
+this extesion can also notify about php fatal errors.
+
+
+installation is very simple,
+
+
+git clone git://github.com/adeelahmad/php_notifyerror.git
+phpize
+./configure
+make
+make install
+
+
+After make install, you will need to include this extension in php.ini
+
+extension=notifyerror.so
+
+
+
+php.ini or .htaccess or ini_set can be used to configure this extension for error notifications.
+
+errornotify.enable {0,1} 0 => disbaled , 1 => enabled
+errornotify.email	{user@mail.com} 
+errornotify.loglevel {1,2,3} 
+
+
+
+Adeel Ahmad
+http://pk.linkedin.com/in/adeelahmad99

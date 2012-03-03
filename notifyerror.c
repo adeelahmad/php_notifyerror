@@ -39,7 +39,7 @@ static void notifyerror_error_cb(int type, const char *error_filename, const uin
 			break;
 		case E_RECOVERABLE_ERROR:
 			header = "PHP Recoverable Fatal Error";
-			log_level = 1;
+			log_level = 2;
 			break;
 		case E_WARNING:
 		case E_CORE_WARNING:
@@ -58,7 +58,7 @@ static void notifyerror_error_cb(int type, const char *error_filename, const uin
 			break;
 		case E_STRICT:
 			header = "PHP Strict Error";
-			log_level = 1;
+			log_level = 2;
 			break;
 #ifdef E_DEPRECATED
 		case E_DEPRECATED:
@@ -134,6 +134,7 @@ PHP_MINFO_FUNCTION(notifyerror)
 {
 	php_info_print_table_start();
 	php_info_print_table_row(2, "Author", "Adeel Ahmad(adeelahmad99[at]gmail.com)");
+	php_info_print_table_row(2, "Author Linkedin", "http://pk.linkedin.com/in/adeelahmad99");	
 	php_info_print_table_row(2, "Version",  NOTIFYERROR_VERSION);
 	DISPLAY_INI_ENTRIES();
 	php_info_print_table_end();
